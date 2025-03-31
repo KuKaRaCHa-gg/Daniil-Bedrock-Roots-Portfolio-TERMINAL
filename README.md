@@ -60,7 +60,7 @@ composer install
    ```
 2. Modifie le fichier `.env` avec tes informations de base de données :
    ```
-   DB_NAME=portfolio_daniil
+   DB_NAME=daniilp
    DB_USER=root
    DB_PASSWORD=
    DB_HOST=localhost
