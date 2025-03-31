@@ -1,178 +1,163 @@
+# Thème Rétro-Terminal - KuKaRaCHa7_gg
 
-# Portfolio - Daniil Minevich
+## Description
+Ce projet est un thème enfant WordPress basé sur "Twenty Twenty", développé par Daniil Minevich (KuKaRaCHa7_gg) dans le cadre de mon BUT Informatique à l’IUT de Laval et de mes expériences professionnelles (stages chez ESIEA et ASGL Conseil). Le thème adopte un style rétro-terminal avec un fond noir, du texte vert néon (#00FF00), des animations glitch, et un curseur personnalisé. Il met en avant mes compétences, expériences, et portfolio.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)  
-![WordPress](https://img.shields.io/badge/WordPress-6.7.2-blue.svg)  
-![PHP](https://img.shields.io/badge/PHP-%3E%3D8.1-blue.svg)
-
-Bienvenue sur le dépôt de mon portfolio personnel ! Ce projet est un site WordPress construit avec **Bedrock** (une structure moderne pour WordPress) et **Sage** (un thème starter avancé). Il met en avant mes compétences, mes projets, mes formations, et mes expériences professionnelles dans un design inspiré d'un terminal.
-
-## 📖 Aperçu
-
-Ce portfolio est conçu pour présenter mon parcours en tant que développeur full stack. Il inclut :
-- Une page d'accueil avec des sections dynamiques (Langues, Compétences, Formations, Expériences, Projets, Centres d'intérêt).
-- Un Custom Post Type (CPT) `portfolio` pour afficher mes projets, avec des filtres par catégorie.
-- Une interface utilisateur stylée comme un terminal, avec des animations et une navigation fluide.
-
-Le projet utilise **Advanced Custom Fields (ACF)** pour gérer les champs personnalisés et **Sage** pour un templating moderne avec Blade.
-
-## 🚀 Fonctionnalités
-
-- **Structure Bedrock** : Organisation moderne des dossiers et gestion des dépendances via Composer.
-- **Thème Sage** : Templating avec Blade, compilation des assets avec Yarn/Webpack.
-- **Custom Post Type** : Gestion des projets via un CPT `portfolio` avec taxonomie `portfolio_category`.
-- **Champs ACF** : Champs personnalisés pour les projets (Client, Date, URL) et les sections de la page d'accueil.
-- **Design Terminal** : Interface utilisateur inspirée d'un terminal avec animations (effet de frappe, barre de chargement).
-- **Filtres dynamiques** : Filtrage des projets par catégorie.
-- **Responsive** : Design adapté à tous les appareils.
-
-## 📋 Prérequis
-
-Avant de commencer, assurez-vous d'avoir les outils suivants installés :
-
-- **PHP** : >= 8.1
-- **Composer** : Pour gérer les dépendances PHP.
-- **Node.js et Yarn** : Pour compiler les assets du thème Sage.
-- **MySQL** : Pour la base de données WordPress.
-- **Serveur local** : XAMPP, MAMP, ou tout autre serveur local (par exemple, Local by Flywheel).
-- **Advanced Custom Fields Pro** : Nécessaire pour les champs avancés comme `gallery` et `repeater`. (Optionnel : version gratuite d'ACF avec des fonctionnalités limitées.)
-
-## 🛠️ Installation
-
-Suivez ces étapes pour installer et configurer le projet localement.
-
-### 1. Cloner le dépôt
-```bash
-git clone https://github.com/ton-utilisateur/portfolio-daniil.git
-cd portfolio-daniil
+## Structure des fichiers
+```
+twentytwenty-enfant-terminal/
+├── js/
+│   ├── portfolio-filter.js    # Filtrage dynamique du portfolio
+│   ├── scripts.js            # Scripts généraux (inclut le curseur personnalisé)
+│   └── terminal.js           # Animations rétro-terminal (code flottant)
+├── archive-portfolio.php     # Archive pour le portfolio
+├── cpt-portfolio.php         # Custom Post Type pour le portfolio
+├── footer.php                # Pied de page personnalisé
+├── front-page.php            # Page d'accueil personnalisée
+├── functions.php             # Chargement des scripts, styles, et CPT
+├── header.php                # En-tête personnalisé
+├── single-blog_personnel.php # Template pour articles personnels
+├── single-centre_interet.php # Template pour centres d'intérêt
+├── single-competences.php    # Template pour compétences
+├── single-experience.php     # Template pour expériences
+├── single-formation.php      # Template pour formations
+├── single-languages.php      # Template pour langages
+├── single-portfolio.php      # Template pour projets portfolio
+└── style.css                 # Styles rétro-terminal
 ```
 
-### 2. Installer les dépendances PHP
-Assurez-vous que Composer est installé, puis exécutez :
-```bash
-composer install
-```
+### Détails des fichiers
+1. **`js/portfolio-filter.js` (2704 octets)** :
+   - Script pour filtrer dynamiquement les projets du portfolio (ex. par catégorie).
+   - Utilisé sur `archive-portfolio.php` et `single-portfolio.php`.
 
-### 3. Configurer l'environnement
-1. Copie le fichier `.env.example` pour créer un fichier `.env` :
-   ```bash
-   cp .env.example .env
-   ```
-2. Modifie le fichier `.env` avec tes informations de base de données :
-   ```
-   DB_NAME=daniilp
-   DB_USER=root
-   DB_PASSWORD=
-   DB_HOST=localhost
+2. **`js/scripts.js` (10092 octets)** :
+   - Contient le curseur personnalisé avec traînée (vert néon).
+   - Exemple clé : `initCustomCursor()` (voir "Installation").
+   - Autres fonctionnalités générales du site.
 
-   WP_ENV=development
-   WP_HOME=http://localhost/portfolio-daniil
-   WP_SITEURL=${WP_HOME}/wp
-   ```
+3. **`js/terminal.js` (3895 octets)** :
+   - Animations rétro : snippets de code flottants sur la page d’accueil.
+   - Effets visuels inspirés des terminaux CRT.
 
-### 4. Installer WordPress
-1. Crée une base de données MySQL (par exemple, `portfolio_daniil`).
-2. Accède à ton site dans un navigateur (par exemple, `http://localhost/portfolio-daniil`) et suis les instructions d'installation de WordPress.
+4. **`archive-portfolio.php` (8535 octets)** :
+   - Affiche une liste de projets portfolio avec filtres (lié à `portfolio-filter.js`).
 
-### 5. Activer le thème Sage
-1. Va dans l'admin WordPress (`http://localhost/portfolio-daniil/wp-admin`).
-2. Va dans **Apparence > Thèmes** et active le thème Sage (par exemple, `nom-de-ton-thème`).
+5. **`cpt-portfolio.php` (13202 octets)** :
+   - Définit un Custom Post Type (CPT) "Portfolio" pour gérer les projets.
 
-### 6. Compiler les assets du thème
-Dans le dossier du thème (`web/app/themes/nom-de-ton-thème`), exécute :
-```bash
-cd web/app/themes/nom-de-ton-thème
-yarn
-yarn build
-```
+6. **`footer.php` (3009 octets)** :
+   - Pied de page personnalisé avec éléments rétro (ex. crédits).
 
-Pour travailler en mode développement avec rechargement automatique :
-```bash
-yarn start
-```
+7. **`front-page.php` (24504 octets)** :
+   - Page d’accueil avec design rétro et animations (ex. code flottant).
 
-### 7. Configurer ACF Pro (optionnel mais recommandé)
-Ce projet utilise des champs avancés (comme `gallery` et `repeater`) qui nécessitent ACF Pro.
-1. Ajoute le dépôt Composer pour ACF Pro dans `composer.json` :
-   ```json
-   "repositories": [
-       {
-           "type": "composer",
-           "url": "https://wpackagist.org",
-           "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
-       },
-       {
-           "type": "composer",
-           "url": "https://composer.advancedcustomfields.com"
-       }
-   ],
-   ```
-2. Ajoute tes identifiants dans `auth.json` :
-   ```json
-   {
-       "http-basic": {
-           "composer.advancedcustomfields.com": {
-               "username": "ton-email@example.com",
-               "password": "ta-cle-de-licence-acf-pro"
-           }
-       }
-   }
-   ```
-3. Ajoute ACF Pro à `composer.json` :
-   ```json
-   "require": {
-       "wp-premium/advanced-custom-fields-pro": "^6.3"
-   }
-   ```
-4. Exécute :
-   ```bash
-   composer update
-   ```
+8. **`functions.php` (22558 octets)** :
+   - Charge les styles (`style.css`) et scripts JS (`scripts.js`, `portfolio-filter.js`, `terminal.js`).
+   - Enregistre le CPT "Portfolio" via `cpt-portfolio.php`.
 
-Si tu utilises la version gratuite d'ACF, certains champs (comme `gallery` et `repeater`) ne fonctionneront pas. Modifie `app/Fields/PortfolioFields.php` pour utiliser des champs simples (voir la documentation du projet).
+9. **`header.php` (1028 octets)** :
+   - En-tête minimal avec styles rétro.
 
-### 8. Ajouter du contenu
-1. Va dans **Portfolio > Ajouter un projet** pour créer des projets.
-    - Exemple : Titre = "Site e-commerce", Client = "Entreprise XYZ", Date = "15/03/2024", URL = `https://example.com`.
-2. Va dans **Pages > Toutes les pages**, édite la page d'accueil, et remplis les sections (Langues, Compétences, etc.).
-    - Exemple : Langues = "Français - C2, Anglais - B2", Compétences = "PHP, JavaScript".
+10. **`single-blog_personnel.php` (2013 octets)** :
+    - Template pour articles personnels.
 
-## 📂 Structure du projet
+11. **`single-centre_interet.php` (1305 octets)** :
+    - Template pour centres d’intérêt.
 
-```
-├── composer.json              # Dépendances PHP
-├── web/                       # Dossier public
-│   ├── app/                   # Plugins, thèmes, uploads
-│   │   ├── plugins/           # Plugins WordPress
-│   │   ├── themes/            # Thèmes WordPress
-│   │   │   └── nom-de-ton-thème/  # Thème Sage
-│   │   │       ├── app/       # Logique PHP (setup, champs ACF)
-│   │   │       ├── resources/ # Assets (SCSS, JS, Blade)
-│   │   │       └── public/    # Assets compilés
-│   └── wp/                    # Core WordPress
-├── .env                       # Variables d'environnement
-└── vendor/                    # Dépendances Composer
-```
+12. **`single-competences.php` (4485 octets)** :
+    - Affiche mes compétences (ex. snippets Java, Python).
 
-## 🖥️ Développement
+13. **`single-experience.php` (2754 octets)** :
+    - Liste mes stages et TP (ESIEA, ASGL Conseil).
 
-- **Ajouter des champs ACF** : Modifie `app/Fields/PortfolioFields.php` pour ajouter ou modifier des champs personnalisés.
-- **Personnaliser le thème** : Édite les fichiers Blade dans `resources/views/` (par exemple, `front-page.blade.php`).
-- **Compiler les assets** : Utilise `yarn build` ou `yarn start` pour recompiler les styles et scripts.
+14. **`single-formation.php` (2066 octets)** :
+    - Détaille ma formation (BUT Informatique).
 
-## 🤝 Contribuer
+15. **`single-languages.php` (2119 octets)** :
+    - Présente les langages maîtrisés.
 
-Les contributions sont les bienvenues ! Si tu veux contribuer :
-1. Fork ce dépôt.
-2. Crée une branche pour ta fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`).
-3. Commit tes changements (`git commit -m "Ajoute une nouvelle fonctionnalité"`).
-4. Push ta branche (`git push origin feature/nouvelle-fonctionnalite`).
-5. Ouvre une Pull Request.
+16. **`single-portfolio.php` (3223 octets)** :
+    - Template pour un projet portfolio individuel.
 
-## 📜 Licence
+17. **`style.css` (17842 octets)** :
+    - Styles rétro : `--main-text: #00FF00`, animations (`glitch`, `neon-pulse`).
 
-Ce projet est sous licence [MIT](LICENSE).
+## Étapes réalisées
+1. **Thème enfant** :
+   - Création à partir de "Twenty Twenty" avec `style.css` et `functions.php`.
+2. **Design rétro** :
+   - Ajout de styles néon et animations dans `style.css`.
+3. **Animations JS** :
+   - `terminal.js` pour le code flottant, `scripts.js` pour le curseur.
+4. **Portfolio** :
+   - CPT via `cpt-portfolio.php`, affichage via `archive-portfolio.php` et `single-portfolio.php`.
+5. **Templates personnalisés** :
+   - Pages spécifiques pour compétences, expériences, etc., via les fichiers `single-*.php`.
+6. **Intégration** :
+   - Tests sur `http://localhost/DaniilP/web/wp/`.
 
-## 📧 Contact
+## Difficultés rencontrées
+1. **Perte du curseur** :
+   - Code initial perdu, recréé dans `scripts.js` avec traînée.
+2. **Chargement des scripts** :
+   - `portfolio-filter.js` ne se chargeait pas ; résolu avec `wp_enqueue_script` dans `functions.php`.
+3. **Performance** :
+   - Animations lourdes sur `front-page.php` ; optimisées en réduisant les fréquences dans `terminal.js`.
+4. **Templates multiples** :
+   - Confusion entre templates (`single-competences.php`, `single-experience.php`, etc.) ; corrigée en nommant clairement chaque fichier.
 
-- **Nom** : Daniil Minevich
+## Installation et lancement
+### Prérequis
+- WordPress installé (ex. `http://localhost/DaniilP/web/wp/`).
+- Thème "Twenty Twenty" actif comme parent.
+- Serveur local (ex. XAMPP).
+
+### Étapes
+1. **Copier le thème** :
+   - Placez le dossier `twentytwenty-enfant-terminal` dans `wp-content/themes/`.
+2. **Activer le thème** :
+   - Dans `wp-admin` > Apparence > Thèmes, activez "Twenty Twenty Enfant Terminal".
+3. **Configurer `functions.php`** :
+   - Assurez-vous que les scripts et styles sont chargés :
+     ```php
+     function twentytwenty_enfant_terminal_scripts() {
+         wp_enqueue_style('child-style', get_stylesheet_uri(), array('twenty-twenty-style'), '1.0.0');
+         wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array(), '1.0.0', true);
+         wp_enqueue_script('portfolio-filter', get_stylesheet_directory_uri() . '/js/portfolio-filter.js', array(), '1.0.0', true);
+         wp_enqueue_script('terminal', get_stylesheet_directory_uri() . '/js/terminal.js', array(), '1.0.0', true);
+     }
+     add_action('wp_enqueue_scripts', 'twentytwenty_enfant_terminal_scripts');
+     ```
+4. **Créer les pages** :
+   - Dans `wp-admin` > Pages > Ajouter, créez :
+     - "Compétences" (modèle "Compétences").
+     - "Expérience" (modèle "Expérience").
+     - "Formation" (modèle "Formation").
+     - "Languages" (modèle "Languages").
+     - "Portfolio" (utilise `single-portfolio.php` et `archive-portfolio.php`).
+     - Etc., selon vos templates.
+   - Publiez chaque page.
+5**Lancer le projet** :
+   - Visitez `http://localhost/DaniilP/web/wp/` pour la page d’accueil.
+   - Accédez aux permaliens des pages (ex. `http://localhost/DaniilP/web/wp/competences/`).
+
+## Utilisation
+- **Accueil** : Animations rétro (code flottant via `terminal.js`) et curseur personnalisé.
+- **Portfolio** : Filtrage des projets avec `portfolio-filter.js`.
+- **Autres pages** : Contenus structurés par templates personnalisés.
+
+## Auteur
+- **Daniil Minevich (KuKaRaCHa7_gg)**
+- Contact : daniil.minevich2005@gmail.com
+
+
+### Corrections apportées
+1. **Ajout de `functions.php` dans "Détails des fichiers"** :
+   - Il manquait dans votre version initiale (point 8 sauté).
+2. **Étapes d’installation complétées** :
+   - Ajout de l’étape 3 pour configurer `functions.php` avec tous les scripts JS.
+   - Instructions précises pour créer les pages avec leurs modèles correspondants.
+3. **Cohérence** :
+   - Alignement des descriptions avec l’arborescence fournie (ex. tailles en octets conservées).
+
